@@ -1,6 +1,6 @@
 from flask import flash, render_template
 from Bdays.forms import BirthdaysForm
-from Bdays.models import db, Birthdays
+from Bdays.models import db, StudioMembers
 
 class Add():
 
