@@ -1,6 +1,6 @@
 from flask import flash, render_template
 from Bdays.forms import BirthdaysForm
-from Bdays.models import db, StudioMembers
+from Bdays.models import db, StudioMember
 
 class Add():
 
@@ -28,4 +28,4 @@ class Add():
         db.session.add(db_set)
         db.session.flush()
         db.session.commit()
-        return self.render() # optionally, this may return flash later. May be
+        return self.render() 
