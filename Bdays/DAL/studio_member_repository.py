@@ -1,12 +1,33 @@
 from Bdays.models.db import db
 from Bdays.models.studio_member import StudioMember
-from datetime import datetime as dt
 
 
 class StudioMemberRepository():
-
-    def create(self, id, nickname, date):
-        my_date = dt.strptime(date, '%Y-%m-%d')
-        db_set = StudioMember(id = id, nickname = nickname, birthday = my_date)
+    """I am CRUD!"""
+    def create(self, id, nickname, birthday):
+        db_set = StudioMember(id = id, nickname = nickname, birthday = birthday)
         db.session.add(db_set)
         db.session.commit()
+
+
+    def read(self, id):
+        studio_member = StudioMember.query.filter_by(id=id).first()
+        return studio_member
+
+
+    def read_all(self):
+        studio_members = StudioMember.query.all()
+        return studio_members
+
+
+    def update(self, id, nickname, birthday):
+        studio_member = StudioMember.query.filter_by(id=id).first()
+        studio_member.nickname = nickname
+        studio_member.birtday = birthday
+        db.session.commit()
+    
+
+    def delete(self, id):
+        db.session.query(StudioMember).filter(StudioMember.id == id).delete()
+        db.session.commit()
+    

@@ -12,7 +12,7 @@ def create_app(test_config = False):
     else:
         app.config.from_object('config.BaseConfig')
                 
-    db.init_app(app)  
+    db.init_app(app)
 
     with app.app_context():
         from Bdays import routes
