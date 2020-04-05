@@ -16,7 +16,11 @@ class StudioMemberRepository():
 
 
     def read_all(self):
-        studio_members = StudioMember.query.all()
+        studio_members = db.session.query(
+            StudioMember.id,
+            StudioMember.nickname,
+            StudioMember.birthday
+            ).all()
         return studio_members
 
 
