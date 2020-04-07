@@ -1,5 +1,5 @@
-from Bdays.models.db import db
-from Bdays.models.donation import Donation
+from Bdays.DAL.models.db import db
+from Bdays.DAL.models.donation import Donation
 
 
 class DonationRepository():

@@ -18,8 +18,8 @@
           <div class="col-md-2 col-sm-12 col-xs-12">
             <div class="master_list">
               <div class="list-group">
-              {% for nickname in nicknames %}  
-                <button type="button" class="list-group-item" data-option="option{{ loop.index }}">{{ nickname }}</button>
+              {% for studio_member in studio_members %}  
+                <button type="button" class="list-group-item" data-option="option{{ loop.index }}">{{ studio_member.nickname }}</button>
               {% endfor %}
               </div>
             </div>
@@ -27,41 +27,11 @@
           
       </div>
       <div class="row">
-              <div class="col-md-10 col-sm-12 col-xs-12">
-            <div class="detail_list">
-              <article class="option1">
-                  <h3>Paroll Fields: EmpPers</h3>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_01</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_02</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_03</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_04</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_05</button>
-              </article>
-              <article class="option2">
-                  <h3>Paroll Fields: EmpComp</h3>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_01</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_02</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_03</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_04</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_05</button>
-              </article>
-              <article class="option3">
-                  <h3>Paroll Fields: EmpHJob</h3>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_01</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_02</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_03</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_04</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_05</button>
-              </article>
-              <article class="option4">
-                  <h3>Paroll Fields: Table_04</h3>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_01</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_02</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_03</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_04</button>
-                  <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-table"></i>&nbsp;Table_Fields_05</button>
-              </article>
-            </div>
+          <div class="col-md-10 col-sm-12 col-xs-12">
+            <table class="table">
+              <thead class="thead-dark">
+              </thead>
+            </table>  
           </div>
       </div>
   </div>

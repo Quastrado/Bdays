@@ -1,5 +1,5 @@
-from Bdays.models.db import db
-from Bdays.models.studio_member import StudioMember
+from Bdays.DAL.models.db import db
+from Bdays.DAL.models.studio_member import StudioMember
 
 
 class StudioMemberRepository():
@@ -16,11 +16,7 @@ class StudioMemberRepository():
 
 
     def read_all(self):
-        studio_members = db.session.query(
-            StudioMember.id,
-            StudioMember.nickname,
-            StudioMember.birthday
-            ).all()
+        studio_members = StudioMember.query.all()
         return studio_members
 
 

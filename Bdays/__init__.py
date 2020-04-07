@@ -1,5 +1,5 @@
 from flask import Flask
-from Bdays.models.db import db
+from Bdays.DAL.models.db import db
 from Bdays.controllers.studio_members_controller import blueprint as studio_member_blueprint
 from Bdays.controllers.index_controller import blueprint as index_blueprint
 #from Bdays.models.studio_member import StudioMember
