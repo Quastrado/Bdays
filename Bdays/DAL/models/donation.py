@@ -14,12 +14,10 @@ class Donation(db.Model):
     description = db.Column(db.Text)
     donation_source = db.relationship(
         'StudioMember', 
-        #back_populates = 'given_donations',
         foreign_keys = [donation_source_id]
         )
     donation_target = db.relationship(
         'StudioMember', 
-        #back_populates = 'received_donations',
         foreign_keys = [donation_target_id]
         )
     

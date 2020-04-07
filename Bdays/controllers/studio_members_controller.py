@@ -6,9 +6,8 @@ from flask import Blueprint
 blueprint = Blueprint('studio_member_controller', __name__, static_folder='static')
 
 
-class StudioMemberController():
-
-    @blueprint.route('/add', methods=['GET'])
-    def base():
-        raise Exception('shtob ti ponyl chto ti zdec')
+@blueprint.route('/uid', methods=['GET'])
+def uid():
+    uid = request.args.get('studio_member_id')
+    return(uid)
     

@@ -17,7 +17,7 @@ class StudioMember(db.Model):
             )
     received_donations = db.relationship(
             'Donation',
-            back_populates = 'donation_source',
+            back_populates = 'donation_target',
             foreign_keys = 'Donation.donation_target_id'
             )
     

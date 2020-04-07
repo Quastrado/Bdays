@@ -19,7 +19,7 @@
             <div class="master_list">
               <div class="list-group">
               {% for studio_member in studio_members %}  
-                <button type="button" class="list-group-item" data-option="option{{ loop.index }}">{{ studio_member.nickname }}</button>
+                <button type="button" class="list-group-item" data-option="{{ studio_member.id }}">{{ studio_member.nickname }}</button>
               {% endfor %}
               </div>
             </div>
