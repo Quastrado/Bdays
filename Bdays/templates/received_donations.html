@@ -1,0 +1,20 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nickname</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for received_donation in studio_member.received_donations %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>{{ received_donation.donation_source.nickname }}</td>
+      <td>{{ received_donation.amount }}</td>
+      <td>{{ received_donation.description }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>

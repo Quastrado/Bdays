@@ -12,11 +12,15 @@ $(document).ready(function () {
       // $master_detail.find('article').removeClass('grow fadeIn');
   
       // $article.addClass('grow fadeIn');
-      // ajax({
-      //   type: 'GET',
-      //   url: "/studio_member/uid",
-
-      // })
+      $.ajax({
+        type: 'GET',
+        url: "/studio_member/" + article_option,
+        success: function(data){
+          console.log(data, 1, $('#content'), 2); 
+          $('#content').html(data);
+          console.log(data, $('#content'))
+        },
+      });
     });
    });
 // GET запрос - получить с сервера
