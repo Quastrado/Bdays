@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import render_template
+from flask import render_template, request
 from flask import Blueprint
 
 from Bdays.DAL.donation_repository import DonationRepository
@@ -12,6 +12,5 @@ blueprint = Blueprint('donation_controller', __name__, static_folder='static')
 @blueprint.route('/', methods=['POST'])
 @convert_input_to(Donation)
 def add_donation(donation):
-    raise Exception(donation.description)
-
-
+    
+    return '1'

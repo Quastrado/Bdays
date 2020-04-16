@@ -1,26 +1,39 @@
-{% extends "base.html" %}
-
-
-{% block title %}Add Donation{% endblock %}
-
-
-{% block content %}
-<form>
+<form method="POST">
     <div class="form-group">
-        <label for="descriptionInput">Amount</label>
-        <input type="password" class="form-control" id="descriptionInput">
+        <input type="text" class="form-control" id="donatorInput" placeholder="Donator">
     </div>
     <div class="form-group">
-        <label for="descriptionInput">Description</label>
-        <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
+        <input type="text" class="form-control" id="amountInput" placeholder="Amount">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description here"></textarea>
     </div>
     <div class="text-center">
-        <button type="button" class="btn btn-dark">Add</button>
+        <button type="button" id="addFormButton" class="btn btn-dark btn-block">Add</button>
     </div>
 </form>
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-{% endblock %}
+<script>
+    $(function(){
+	$('#addFormButton').click(function(){
+    console.log('here')
+    var data = {
+            donator: $('#donatorInput').val(),
+            amount: $('#amountInput').val(),
+            description: $('#descriptionInput').val(),
+                }
+    $.ajax({
+      url: "/donation/",
+      type: 'POST',
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response){
+        console.log(data);
+        console.log(response);
+			},
+			error: function(error){
+			}
+		});
+    });
+});
+</script>
