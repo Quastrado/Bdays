@@ -8,11 +8,13 @@ class DonationRepository():
         db_set = Donation(
             id = id,
             amount = amount,
-            donation_source = donation_source,
-            donation_target = donation_target
+            donation_source_id = donation_source,
+            donation_target_id = donation_target,
+            description = description
             )
         db.session.add(db_set)
         db.session.commit()
+        return id
 
 
     def read(self, id):
@@ -28,8 +30,8 @@ class DonationRepository():
     def update(self, id, amount, donation_source, donation_target, description):
         donation = Donation.query.filter_by(id=id).first()
         donation.amount = amount
-        donation.donation_source = donation_source
-        donation.donation_target = donation_target
+        donation.donation_source_id = donation_source
+        donation.donation_target_id = donation_target
         donation.description = description
         db.session.commit()
 

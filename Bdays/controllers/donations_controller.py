@@ -1,3 +1,5 @@
+import uuid
+
 from flask import current_app as app
 from flask import render_template, request
 from flask import Blueprint
@@ -13,8 +15,18 @@ blueprint = Blueprint('donation_controller', __name__, static_folder='static')
 @blueprint.route('/', methods=['POST'])
 @convert_input_to(ViewDonation)
 def add_donation(view_donation):
-    donation = Donation()
-    donation.amount = view_donation.amount
-    donation.description = view_donation.description
-    print(view_donation.amount, view_donation.description)
+    donation_repository = DonationRepository()
+    uid = uuid.uuid4()
+    donation_repository.create(
+        uid,
+        view_donation.amount,
+        view_donation.donation_source,
+        view_donation.donation_target,
+        view_donation.description
+    )
+    print(uid)
+    # donation = Donation()
+    # donation.amount = view_donation.amount
+    # donation.description = view_donation.description
+    # print(view_donation.amount, view_donation.description)
     return '1'
