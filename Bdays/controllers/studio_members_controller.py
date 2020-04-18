@@ -13,5 +13,13 @@ def get_by_id(id):
     uid = id
     studio_member_repository = StudioMemberRepository()
     studio_member = studio_member_repository.read(uid)
-    return render_template('received_donations.html', studio_member=studio_member)
+    donators = studio_member_repository.read_all()
+    return render_template(
+                            'received_donations.html',
+                            studio_member=studio_member,
+                            donators=donators
+                            )
+
+
+
     

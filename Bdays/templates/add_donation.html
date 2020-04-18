@@ -1,7 +1,9 @@
 <form method="POST">
-    <div class="form-group">
-        <input type="text" class="form-control" id="donatorInput" placeholder="Donator">
-    </div>
+    <select class="form-group form-control">
+        {% for donator in object %}
+        <option>{{ donator.nickname }}</option>
+        {% endfor %}
+    </select>
     <div class="form-group">
         <input type="text" class="form-control" id="amountInput" placeholder="Amount">
     </div>
@@ -13,6 +15,7 @@
     </div>
 </form>
 
+<script>localStorage.getItem("studio members")</script>
 <script>
     $(function(){
 	$('#addFormButton').click(function(){

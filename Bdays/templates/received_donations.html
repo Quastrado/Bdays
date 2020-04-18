@@ -36,7 +36,22 @@
         </button>
       </div>
       <div class="modal-body">
-        {% include "add_donation.html" %}
+        <form method="POST">
+          <select class="form-group form-control">
+              {% for donator in donators | rejectattr('id', 'eq', studio_member.id) %}
+                <option>{{ donator.nickname }}</option>
+              {% endfor %}
+          </select>
+          <div class="form-group">
+              <input type="text" class="form-control" id="amountInput" placeholder="Amount">
+          </div>
+          <div class="form-group">
+              <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description here"></textarea>
+          </div>
+          <div class="text-center">
+              <button type="button" id="addFormButton" class="btn btn-dark btn-block">Add</button>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -45,3 +60,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function(){
+  $('#addFormButton').click(function(){
+  console.log('here')
+  var data = {
+          donator: $('#donatorInput').val(),
+          amount: $('#amountInput').val(),
+          description: $('#descriptionInput').val(),
+              }
+  $.ajax({
+    url: "/donation/",
+    type: 'POST',
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(data),
+    success: function(response){
+      console.log(data);
+      console.log(response);
+    },
+    error: function(error){
+    }
+  });
+  });
+});
+</script>
