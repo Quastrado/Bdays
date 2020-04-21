@@ -1,6 +1,7 @@
 from flask import current_app as app
 from flask import jsonify, render_template, request
 from flask import Blueprint
+from flask_login import login_required
 
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
 
@@ -16,6 +17,7 @@ def index():
 
 
 @blueprint.route('/dashboard')
+@login_required
 def dashboard():
     studio_member_repository = StudioMemberRepository()
     studio_members = studio_member_repository.read_all()
