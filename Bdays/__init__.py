@@ -1,6 +1,8 @@
 from flask import Flask
 from Bdays.DAL.models.db import db
 from flask import Blueprint
+from flask_login import LoginManager, current_user, login_required
+from Bdays.DAL.models.users import User
 from Bdays.controllers.login_controller import blueprint as login_blueprint
 from Bdays.controllers.studio_members_controller import blueprint as studio_member_blueprint
 from Bdays.controllers.index_controller import blueprint as index_blueprint
@@ -19,10 +21,18 @@ def create_app(test_config = False):
         app.config.from_object('config.BaseConfig')
                 
     db.init_app(app)
-    
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = '/'
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(id)    
 
     with app.app_context():
-        from Bdays.controllers import studio_members_controller, index_controller
-
+        from Bdays.controllers import studio_members_controller, index_controller, login_controller
+    
+    
     db.create_all(app=app)
     return app

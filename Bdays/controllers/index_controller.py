@@ -10,6 +10,13 @@ blueprint = Blueprint('index_controller', __name__, static_folder='static')
 
 @blueprint.route('/', methods=['GET'])
 def index():
+    # studio_member_repository = StudioMemberRepository()
+    # studio_members = studio_member_repository.read_all()
+    return render_template('index.html')#, studio_members=studio_members)
+
+
+@blueprint.route('/dashboard')
+def dashboard():
     studio_member_repository = StudioMemberRepository()
     studio_members = studio_member_repository.read_all()
-    return render_template('index.html', studio_members=studio_members)
+    return render_template('base.html', studio_members=studio_members)
