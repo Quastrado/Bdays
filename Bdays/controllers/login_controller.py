@@ -5,22 +5,31 @@ from flask_login import  current_user, login_user, logout_user
 from Bdays.DAL.models.users import User
 
 
+from Bdays.DAL.user_repository import UserRepository
+
+
 blueprint = Blueprint('login_controller', __name__, static_folder='static')
-
-
-@blueprint.route('/login')
-def login():
-    return render_template('login.html')
 
 
 @blueprint.route('/process-login', methods=['POST'])
 def process_login():
+    user_repository = UserRepository()
     username = request.form['username']
     password = request.form['password']
-    
-    user = User.query.filter(User.username == username).first()
-    if user and user.check_password(password):
+    user = user_repository.find_user(username, password)
+    if user:
         login_user(user)
         return url_for('index_controller.dashboard')
+    return redirect(url_for('login_controller.login'))
 
-    return redirect(url_for('login'))
+
+@blueprint.route('/process-registration', methods=['POST'])
+def process_registration():
+    user_repository = UserRepository()
+    username = request.form['username']
+    password = request.form['password']
+    password_replay = request.form['password_replay']
+    if password == password_replay:
+         user_repository.registration(username, password)
+         return url_for('index_controller.index')
+    return url_for('index_controller.registration')
