@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/login.css') }}">
+    
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
@@ -17,7 +18,7 @@
           <form action="">
               <input id="csrf_token" name="csrf_token" type="hidden">
               <div class="form-group">
-                  <input _ngcontent-c0="" class="form-control form-control-lg" id="usernameInput" placeholder="Username" type="text">
+                  <input _ngcontent-c0="" class="form-control form-control-lg" id="nicknameInput" placeholder="Nickname" type="text">
               </div>
               <div class="form-group">
                   <input class="form-control form-control-lg" id="passwordInput" placeholder="Password" type="password">

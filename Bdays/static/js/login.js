@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('form').on('submit', function(event){
         var data = {
-            username: $('#usernameInput').val(),
+            nickname: $('#nicknameInput').val(),
             password: $('#passwordInput').val()
             };
         

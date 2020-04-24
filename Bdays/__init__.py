@@ -2,7 +2,7 @@ from flask import Flask
 from Bdays.DAL.models.db import db
 from flask import Blueprint
 from flask_login import LoginManager, current_user, login_required
-from Bdays.DAL.models.users import User
+from Bdays.DAL.models.studio_member import StudioMember
 from Bdays.controllers.login_controller import blueprint as login_blueprint
 from Bdays.controllers.studio_members_controller import blueprint as studio_member_blueprint
 from Bdays.controllers.index_controller import blueprint as index_blueprint
@@ -28,7 +28,7 @@ def create_app(test_config = False):
 
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(id)    
+        return StudioMember.query.get(id)    
 
     with app.app_context():
         from Bdays.controllers import studio_members_controller, index_controller, login_controller

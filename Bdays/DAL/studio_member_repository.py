@@ -31,3 +31,8 @@ class StudioMemberRepository():
         db.session.query(StudioMember).filter(StudioMember.id == id).delete()
         db.session.commit()
     
+
+    def find_studio_member(self, nickname, password):
+        studio_member = StudioMember.query.filter(StudioMember.nickname == nickname).first()
+        if studio_member and studio_member.check_password(password):
+            return studio_member

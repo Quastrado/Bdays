@@ -64,6 +64,9 @@
 
 <script>
   $(function(){
+    if ($('#dropdownId').children('option:selected').val() == undefined) {
+      $('#addFormButton').attr('disabled', true);
+    }  
   $('#addFormButton').click(function(){
   console.log('here')
   var donationTarget = '{{ studio_member.id }}'  //i know that i will have problems with this in the future
