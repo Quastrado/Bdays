@@ -11,6 +11,18 @@
 </head>
   <body>
   {% block content %}
+  <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#newStudioMember">Add studio member</button>
+      </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </div>
   <div class="container">
     <h3>Payroll Tables w/ Bootstrap</h3>
     <div class="master_detail">
@@ -33,6 +45,46 @@
       </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="newStudioMember" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newStudioMemberLabel">Create new studio member</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" id="nicknameInput" placeholder="Nickname">
+          </div>  
+          <div class="form-group">
+            <input type="date" class="form-control" id="birthdayInput" placeholder="00.00.0000">
+          </div>
+          <div class="form-group">
+            <select class="form-group form-control">
+              {% for role in roles %}
+              <option>{{ role.role }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="text-center">
+            <button type="button" id="newStudioMemberSubmit" class="btn btn-dark btn-block">Create</button>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
   {% endblock %}
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
