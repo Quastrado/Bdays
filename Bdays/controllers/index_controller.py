@@ -4,6 +4,7 @@ from flask import Blueprint
 from flask_login import current_user, login_required
 
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
+from Bdays.DAL.role_repository import RoleRepository
 
 
 blueprint = Blueprint('index_controller', __name__, static_folder='static')
@@ -27,5 +28,7 @@ def registration():
 @login_required
 def dashboard():
     studio_member_repository = StudioMemberRepository()
+    role_repository = RoleRepository()
     studio_members = studio_member_repository.read_all()
-    return render_template('base.html', studio_members=studio_members)
+    roles = role_repository.read_all()
+    return render_template('base.html', studio_members=studio_members, roles=roles)
