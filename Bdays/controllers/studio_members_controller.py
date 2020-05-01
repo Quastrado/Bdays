@@ -34,7 +34,6 @@ def create_studio_member(view_studio_member):
         new_studio_member_id,
         view_studio_member.nickname,
         view_studio_member.birthday,
-        view_studio_member.role
     )
     print(f'User with id - {new_studio_member_id}')
     return "1" 
