@@ -16,6 +16,24 @@ $(document).ready(function () {
       });
     });
    });
+
+$('#newStudioMemberSubmit').click(function() {
+  var nickname = $('#nicknameInput').val();
+  var birthday = $('#birthdayInput').val();
+  var role = $('#rolesDropdown').children('option:selected').val()
+  var data = {
+    nickname: nickname,
+    birthday: birthday,
+    role: role
+    }
+  console.log(data);
+    $.ajax({
+    url: "/studio_member/create_studio_member",
+    type: 'POST',
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(data)
+  });
+});
 // GET запрос - получить с сервера
 // POST запрос - отдать на сервер
 // необходим роут, который примет запрос. В контроллере для studio_members 
