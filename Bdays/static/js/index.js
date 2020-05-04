@@ -28,7 +28,7 @@ $('#newStudioMemberSubmit').click(function() {
     }
   console.log(data);
     $.ajax({
-    url: "/studio_member/create_studio_member",
+    url: "/studio_member/",
     type: 'POST',
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify(data)
