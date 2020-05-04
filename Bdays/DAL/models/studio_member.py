@@ -15,7 +15,11 @@ class StudioMember(db.Model, UserMixin):
     nickname = db.Column(db.String(50), unique=True)
     birthday = db.Column(db.Date)
     password = db.Column(db.String(128))
-    role = db.relationship('Role', secondary='studio_member_roles')
+    role = db.relationship(
+        'Role', 
+        secondary='studio_member_roles',
+        backref=db.backref('studio_member', lazy="dynamic")
+        )
     given_donations = db.relationship(
             'Donation', 
             back_populates = 'donation_source',
