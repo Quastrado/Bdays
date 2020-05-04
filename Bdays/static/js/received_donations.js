@@ -4,7 +4,8 @@ $(function(){
     }  
   $('#addFormButton').click(function(){
   console.log('here')
-  var donationTarget = '{{ studio_member.id }}'  //i know that i will have problems with this in the future
+  var donationTarget = $('#addModalLabel').attr('data-id');  //i know that i will have problems with this in the future
+  console.log(donationTarget);
   var donationSource = $('#dropdownId').children('option:selected').val()
   console.log(donationTarget)
   console.log(donationSource)
