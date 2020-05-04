@@ -1,11 +1,10 @@
-import uuid
-
 from flask import current_app as app
 from flask import jsonify, render_template, request
 from flask import Blueprint
 
 from Bdays.view_models.studio_member import StudioMember as ViewStudioMember
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
+from Bdays.DAL.studio_member_role_repository import StudioMemberRoleRepository
 from Bdays.controllers.helper import convert_input_to
 
 
@@ -29,13 +28,11 @@ def get_by_id(id):
 @convert_input_to(ViewStudioMember)
 def create_studio_member(view_studio_member):
     studio_member_repository = StudioMemberRepository()
-    new_studio_member_id = uuid.uuid4()
     studio_member_repository.create(
-        new_studio_member_id,
         view_studio_member.nickname,
         view_studio_member.birthday,
+        view_studio_member.role
     )
-    print(f'User with id - {new_studio_member_id}')
-    return "1" 
+    return '', 201 
 
     
