@@ -1,10 +1,13 @@
+import uuid
+
 from Bdays.DAL.models.db import db
 from Bdays.DAL.models.donation import Donation
 
 
 class DonationRepository():
 
-    def create(self, id, amount, donation_source, donation_target, description):
+    def create(self, amount, donation_source, donation_target, description):
+        id = uuid.uuid4()
         db_set = Donation(
             id = id,
             amount = amount,

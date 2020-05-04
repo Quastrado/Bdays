@@ -1,12 +1,23 @@
+import uuid
+
 from Bdays.DAL.models.db import db
 from Bdays.DAL.models.studio_member import StudioMember
+from Bdays.DAL.models.roles import Role
+from Bdays.DAL.models.studio_member_role import StudioMemberRole
 
 
 class StudioMemberRepository():
     """I am CRUD!"""
-    def create(self, id, nickname, birthday):
-        db_set = StudioMember(id = id, nickname = nickname, birthday = birthday)
-        db.session.add(db_set)
+    def create(self, nickname, birthday, role):
+        studio_memeber_id = uuid.uuid4()
+        new_studio_member = StudioMember(
+            id = studio_memeber_id,
+            nickname = nickname,
+            birthday = birthday
+        )
+        studio_memeber_role = db.session.query(Role).filter(Role.role == role).first()
+        new_studio_member.role.append(studio_memeber_role)
+        db.session.add(new_studio_member)
         db.session.commit()
 
 
@@ -36,3 +47,8 @@ class StudioMemberRepository():
         studio_member = StudioMember.query.filter(StudioMember.nickname == nickname).first()
         if studio_member and studio_member.check_password(password):
             return studio_member
+
+
+    
+        
+
