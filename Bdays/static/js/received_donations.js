@@ -1,5 +1,7 @@
 $(function(){
-    if ($('#dropdownId').children('option:selected').val() == undefined) {
+  $('#errorAlert').hide()
+  
+  if ($('#dropdownId').children('option:selected').val() == undefined) {
       $('#addFormButton').attr('disabled', true);
     }  
   $('#addFormButton').click(function(){
@@ -25,7 +27,9 @@ $(function(){
       console.log(data);
       console.log(response);
     },
-    error: function(error){
+    error: function(response){
+      $('#alertText').text(response.status + ' ' + response.responseText);
+      $('#errorAlert').fadeIn('slow');
     }
   });
   });

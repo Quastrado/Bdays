@@ -1,6 +1,7 @@
 
 
 $(document).ready(function () {
+    $('#errorAlert').hide()
     var $body = $('body');
   
     $body.on('click', 'div.master_list div.list-group button', function () {
@@ -31,7 +32,14 @@ $('#newStudioMemberSubmit').click(function() {
     url: "/studio_member/",
     type: 'POST',
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify(data)
+    data: JSON.stringify(data),
+    error: function(response) {
+      console.log(response)
+      $('#alertText').text(response.status + ' ' + response.responseText);
+      $('#errorAlert').fadeIn('slow');
+      
+    }
+    
   });
 });
 // GET запрос - получить с сервера
