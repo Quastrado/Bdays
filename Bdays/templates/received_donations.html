@@ -38,6 +38,7 @@
         </button>
       </div>
       <div class="modal-body">
+        {% include "alerts.html" %}
         <form method="POST">
           <select class="form-group form-control" id="dropdownId">
               {% for donator in donators | rejectattr('id', 'eq', studio_member.id) %}
