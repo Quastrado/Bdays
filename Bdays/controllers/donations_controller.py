@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import flash, render_template, request
+from flask import render_template, request
 from flask import Blueprint
 
 from Bdays.DAL.donation_repository import DonationRepository

@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import flash, jsonify, render_template, request
+from flask import jsonify, render_template, request
 from flask import Blueprint
 
 from Bdays.view_models.studio_member import StudioMember as ViewStudioMember
