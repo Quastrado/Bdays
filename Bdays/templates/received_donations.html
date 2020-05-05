@@ -1,4 +1,4 @@
-
+{% if studio_member.received_donations|length > 0%}
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -7,7 +7,6 @@
       <th scope="col">Amount</th>
       <th scope="col">Description</th>
     </tr>
-
   </thead>
   <tbody>
     {% for received_donation in studio_member.received_donations %}
@@ -20,6 +19,11 @@
    {% endfor %}
   </tbody>
 </table>
+{% else %}
+<div class="text-center">
+  <h3>No donations yet</h3>
+</div>
+{% endif %}
 <div class="float-right">
   <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addModal">
     Add
