@@ -1,10 +1,9 @@
 from flask import current_app as app
-from flask import jsonify, render_template, request
+from flask import flash, jsonify, render_template, request
 from flask import Blueprint
 
 from Bdays.view_models.studio_member import StudioMember as ViewStudioMember
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
-from Bdays.DAL.studio_member_role_repository import StudioMemberRoleRepository
 from Bdays.controllers.helper import convert_input_to
 
 
@@ -24,15 +23,19 @@ def get_by_id(id):
                             )
 
 
-@blueprint.route('/create_studio_member', methods=['POST'])
+@blueprint.route('/', methods=['POST'])
 @convert_input_to(ViewStudioMember)
 def create_studio_member(view_studio_member):
     studio_member_repository = StudioMemberRepository()
-    studio_member_repository.create(
-        view_studio_member.nickname,
-        view_studio_member.birthday,
-        view_studio_member.role
-    )
-    return '', 201 
+    try:
+        studio_member_repository.create(
+            view_studio_member.nickname,
+            view_studio_member.birthday,
+            view_studio_member.role
+        )
+    except Exception as e:
+        return 'Internal server error ', 500
+    
+    return 'Hello', 201
 
     
