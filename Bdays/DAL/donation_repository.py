@@ -7,9 +7,7 @@ from Bdays.DAL.models.donation import Donation
 class DonationRepository():
 
     def create(self, amount, donation_source, donation_target, description):
-        id = uuid.uuid4()
         db_set = Donation(
-            id = id,
             amount = amount,
             donation_source_id = donation_source,
             donation_target_id = donation_target,
