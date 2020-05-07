@@ -29,6 +29,7 @@ def create_studio_member(view_studio_member):
     studio_member_repository = StudioMemberRepository()
     try:
         studio_member_repository.create(
+            view_studio_member.email,
             view_studio_member.nickname,
             view_studio_member.birthday,
             view_studio_member.role

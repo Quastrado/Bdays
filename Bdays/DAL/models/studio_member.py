@@ -8,7 +8,6 @@ from Bdays.DAL.models.donation import Donation
 from Bdays.DAL.models.roles import Role
 from Bdays.DAL.models.studio_member_role import StudioMemberRole
 from werkzeug.security import generate_password_hash, check_password_hash
-#db = SQLAlchemy()
 
 
 class StudioMember(db.Model, UserMixin):
@@ -16,7 +15,6 @@ class StudioMember(db.Model, UserMixin):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4())
     email = db.Column(db.Text(), nullable=False)
     nickname = db.Column(db.String(50), unique=True)
-    email = db.Column(db.Text, unique=True)
     birthday = db.Column(db.Date)
     password = db.Column(db.String(128))
     role = db.relationship(

@@ -1,17 +1,18 @@
-import uuid
+import smtplib
 
 from Bdays.DAL.models.db import db
 from Bdays.DAL.models.studio_member import StudioMember
 from Bdays.DAL.models.roles import Role
 from Bdays.DAL.models.studio_member_role import StudioMemberRole
 
+from config import BaseConfig
+
 
 class StudioMemberRepository():
     """I am CRUD!"""
-    def create(self, nickname, birthday, role):
-        studio_memeber_id = uuid.uuid4()
+    def create(self, email, nickname, birthday, role):
         new_studio_member = StudioMember(
-            id = studio_memeber_id,
+            email = email,
             nickname = nickname,
             birthday = birthday
         )
@@ -19,6 +20,33 @@ class StudioMemberRepository():
         new_studio_member.role.append(studio_memeber_role)
         db.session.add(new_studio_member)
         db.session.commit()
+
+        mail_user = BaseConfig.GMAIL
+        mail_password = BaseConfig.GMAIL_PASSWORD
+        
+        sent_from = mail_user
+        to = email
+        subject = 'Set your password'
+        body = 'URL must be here'
+
+        email_text = """
+        From: %s
+        To: %s
+        Subject: %s
+
+        %s 
+        """ % (sent_from, ", ".join(to), subject, body)
+
+        try:
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(mail_user, mail_password)
+            server.sendmail(sent_from, to, email_text)
+            server.close()
+        except Exception as e:
+            return e
 
 
     def read(self, id):
