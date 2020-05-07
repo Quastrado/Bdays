@@ -1,3 +1,5 @@
+import uuid
+
 from sqlalchemy.dialects.postgresql import UUID
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -11,8 +13,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class StudioMember(db.Model, UserMixin):
     __tablename__ = 'studio_members'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, nullable=False)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4())
+    email = db.Column(db.Text(), nullable=False)
     nickname = db.Column(db.String(50), unique=True)
+    email = db.Column(db.Text, unique=True)
     birthday = db.Column(db.Date)
     password = db.Column(db.String(128))
     role = db.relationship(

@@ -2,6 +2,7 @@ from flask import Flask
 from Bdays.DAL.models.db import db
 from flask import Blueprint
 from flask_login import LoginManager, current_user, login_required
+from flask_migrate import Migrate
 from Bdays.DAL.models.studio_member import StudioMember
 from Bdays.controllers.login_controller import blueprint as login_blueprint
 from Bdays.controllers.studio_members_controller import blueprint as studio_member_blueprint
@@ -21,7 +22,7 @@ def create_app(test_config = False):
         app.config.from_object('config.BaseConfig')
                 
     db.init_app(app)
-
+    migrate = Migrate(app, db)
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = '/'
@@ -34,5 +35,5 @@ def create_app(test_config = False):
         from Bdays.controllers import studio_members_controller, index_controller, login_controller
     
     
-    db.create_all(app=app)
+    #db.create_all(app=app)
     return app
