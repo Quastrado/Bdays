@@ -19,10 +19,12 @@ $(document).ready(function () {
    });
 
 $('#newStudioMemberSubmit').click(function() {
+  var email = $('#emailInput').val();
   var nickname = $('#nicknameInput').val();
   var birthday = $('#birthdayInput').val();
   var role = $('#rolesDropdown').children('option:selected').val()
   var data = {
+    email: email,
     nickname: nickname,
     birthday: birthday,
     role: role
