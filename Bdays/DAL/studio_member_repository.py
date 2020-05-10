@@ -1,10 +1,12 @@
-import smtplib
+# import smtplib
+from flask_mail import Mail, Message
 
 from Bdays.DAL.models.db import db
 from Bdays.DAL.models.studio_member import StudioMember
 from Bdays.DAL.models.roles import Role
 from Bdays.DAL.models.studio_member_role import StudioMemberRole
 
+from flask import current_app as app 
 from config import BaseConfig
 
 
@@ -20,34 +22,16 @@ class StudioMemberRepository():
         new_studio_member.role.append(studio_memeber_role)
         db.session.add(new_studio_member)
         db.session.commit()
-
-        mail_user = BaseConfig.GMAIL
-        mail_password = BaseConfig.GMAIL_PASSWORD
         
-        sent_from = mail_user
-        to = email
-        subject = 'Set your password'
-        body = 'URL must be here'
-
-        email_text = """
-        From: %s
-        To: %s
-        Subject: %s
-
-        %s 
-        """ % (sent_from, ", ".join(to), subject, body)
-
-        try:
-            server = smtplib.SMTP('smtp.gmail.com', 587)
-            server.ehlo()
-            server.starttls()
-            server.ehlo()
-            server.login(mail_user, mail_password)
-            server.sendmail(sent_from, to, email_text)
-            server.close()
-        except Exception as e:
-            return e
-
+                
+        mail = Mail(app)
+        sender = BaseConfig.MAIL_USERNAME
+        recipient = email
+        msg = Message('Whelcome', sender=sender, recipients=[recipient])
+        msg.body = "some body"
+        with app.app_context():
+            mail.send(msg)
+        
 
     def read(self, id):
         studio_member = StudioMember.query.filter_by(id=id).first()
