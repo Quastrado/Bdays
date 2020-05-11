@@ -49,7 +49,6 @@ def render_set_password(id):
 @convert_input_to(ViewStudioMemberPassword)
 def set_password(view_studio_member_password):
     studio_member_repository = StudioMemberRepository()
-    print(view_studio_member_password.id, view_studio_member_password.password)
     studio_member_repository.set_password(
         view_studio_member_password.id,
         view_studio_member_password.password

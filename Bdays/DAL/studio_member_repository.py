@@ -62,7 +62,6 @@ class StudioMemberRepository():
 
     def set_password(self, id, password):
         studio_member = StudioMember.query.filter_by(id=id).first()
-        print(studio_member.nickname, password, studio_member.set_password(password))
         studio_member.password = studio_member.set_password(password)
         db.session.commit()
         
