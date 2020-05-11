@@ -22,7 +22,6 @@ class StudioMemberRepository():
         new_studio_member.role.append(studio_memeber_role)
         db.session.add(new_studio_member)
         db.session.commit()
-        
                 
         mail = Mail(app)
         sender = BaseConfig.MAIL_USERNAME
@@ -31,7 +30,7 @@ class StudioMemberRepository():
         msg.body = "some body"
         with app.app_context():
             mail.send(msg)
-        
+       
 
     def read(self, id):
         studio_member = StudioMember.query.filter_by(id=id).first()
@@ -61,6 +60,9 @@ class StudioMemberRepository():
             return studio_member
 
 
-    
+    def set_password(self, id, password):
+        studio_member = StudioMember.query.filter_by(id=id).first()
+        print(studio_member.nickname, password, studio_member.set_password(password))
+        studio_member.password = studio_member.set_password(password)
+        db.session.commit()
         
-
