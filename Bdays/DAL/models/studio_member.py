@@ -36,6 +36,7 @@ class StudioMember(db.Model, UserMixin):
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
+        return generate_password_hash(password)
 
 
     def check_password(self, password):
