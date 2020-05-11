@@ -25,6 +25,20 @@ $('#repeatPassword').on('keyup', function(){
 })
 
 $('#setPasswordButton').click(function() {
-    $('#setPasswordForm').hide();
-    $('#setPasswordFinish').show();
+    var id = $('#setPasswordFinish').attr('data-studioMemberId');
+    var password = $('#enterPassword').val();
+    var data = {
+        id: id,
+        password: password
+    }
+    $.ajax({
+        url: "/studio_member/set_password",
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function(){
+            $('#setPasswordForm').hide();
+            $('#setPasswordFinish').show();
+        }
+    })
 })
