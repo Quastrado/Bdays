@@ -6,3 +6,10 @@ class StudioMember():
         self.nickname = nickname
         self.birthday = birthday
         self.role = role
+
+
+class StudioMemberPassword():
+    def __init__(self, id, password):
+        self.id = id
+        self.password = password
+        
