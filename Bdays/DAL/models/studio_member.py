@@ -43,4 +43,8 @@ class StudioMember(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
 
+    @property
+    def roles(self):
+        return [role.role for role in self.role]
+
     
