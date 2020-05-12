@@ -22,12 +22,15 @@ class StudioMemberRepository():
         new_studio_member.role.append(studio_memeber_role)
         db.session.add(new_studio_member)
         db.session.commit()
+        db.session.refresh(new_studio_member)
+        studio_memeber_id = str(new_studio_member.id)
+        
                 
         mail = Mail(app)
         sender = BaseConfig.MAIL_USERNAME
         recipient = email
         msg = Message('Whelcome', sender=sender, recipients=[recipient])
-        msg.body = "some body"
+        msg.body = 'http://127.0.0.1:5000/studio_member/set_password/{}'.format(studio_memeber_id)
         with app.app_context():
             mail.send(msg)
        
