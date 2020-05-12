@@ -12,16 +12,9 @@ blueprint = Blueprint('index_controller', __name__, static_folder='static')
 
 @blueprint.route('/', methods=['GET'])
 def index():
-    # studio_member_repository = StudioMemberRepository()
-    # studio_members = studio_member_repository.read_all()
-    return render_template('index.html')#, studio_members=studio_members)
-
-
-@blueprint.route('/registration', methods=['GET'])
-def registration():
     if current_user.is_authenticated:
         return redirect(url_for('index_controller.dashboard'))
-    return render_template('registration.html')
+    return render_template('index.html')
 
 
 @blueprint.route('/dashboard')
@@ -31,4 +24,9 @@ def dashboard():
     role_repository = RoleRepository()
     studio_members = studio_member_repository.read_all()
     roles = role_repository.read_all()
-    return render_template('base.html', studio_members=studio_members, roles=roles)
+    current_user_roles = current_user.roles
+    return render_template('base.html',
+                            studio_members=studio_members,
+                            roles=roles,
+                            current_user_roles=current_user_roles
+                            )

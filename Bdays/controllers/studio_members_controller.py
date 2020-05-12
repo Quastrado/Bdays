@@ -1,7 +1,7 @@
 from flask import current_app as app
 from flask import jsonify, render_template, request
 from flask import Blueprint
-
+from flask_login import current_user
 from Bdays.view_models.studio_member import StudioMember as ViewStudioMember, StudioMemberPassword as ViewStudioMemberPassword
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
 from Bdays.controllers.helper import convert_input_to
@@ -16,10 +16,12 @@ def get_by_id(id):
     studio_member_repository = StudioMemberRepository()
     studio_member = studio_member_repository.read(uid)
     donators = studio_member_repository.read_all()
+    current_user_roles = current_user.roles
     return render_template(
                             'received_donations.html',
                             studio_member=studio_member,
-                            donators=donators
+                            donators=donators,
+                            current_user_roles = current_user.roles
                             )
 
 
@@ -27,15 +29,15 @@ def get_by_id(id):
 @convert_input_to(ViewStudioMember)
 def create_studio_member(view_studio_member):
     studio_member_repository = StudioMemberRepository()
-    try:
-        studio_member_repository.create(
-            view_studio_member.email,
-            view_studio_member.nickname,
-            view_studio_member.birthday,
-            view_studio_member.role
-        )
-    except Exception as e:
-        return 'Internal server error ', 500
+    # try:
+    studio_member_repository.create(
+        view_studio_member.email,
+        view_studio_member.nickname,
+        view_studio_member.birthday,
+        view_studio_member.role
+    )
+    # except Exception as e:
+    #     return e
     
     return 'Hello', 201
 

@@ -25,9 +25,11 @@
 </div>
 {% endif %}
 <div class="float-right">
+  {% if 'Admin' in current_user_roles %}
   <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addModal">
     Add
   </button>
+  {% endif %}
 </div>
 
 <!-- Modal -->
