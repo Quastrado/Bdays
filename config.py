@@ -9,10 +9,7 @@ class BaseConfig:
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	POSTGRES = eval(os.getenv('POSTGRES'))
 	SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:%(password)s@%(host)s/%(database)s' % POSTGRES
-	
-	# GMAIL = 'EthexEnterprise@gmail.com'dashboard
-	# GMAIL_PASSWORD = 'sfabdays' 
-	# email server
+		
 	MAIL_SERVER = os.getenv('MAIL_SERVER')
 	MAIL_PORT = os.getenv('MAIL_PORT')
 	MAIL_USE_TLS = False
