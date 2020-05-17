@@ -3,5 +3,6 @@
 **.ini
 /.vscode
 /env
-config.py 
+.env
+.flaskenv
 run.sh
