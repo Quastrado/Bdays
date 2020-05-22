@@ -49,7 +49,7 @@ MAIL_PASSWORD = 'your mail password'
 
 Create tables in your database
 ```bash
-$ python db upgrade
+$ flask db migrate && flask db migrate && flask db upgrade
 ```
 
 # Launch
