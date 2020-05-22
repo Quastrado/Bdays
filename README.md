@@ -1,11 +1,6 @@
 # Bdays
 
-From time to time I communicate with some people. And each of them has a birthday once a year. I should keep that in mind! Maybe this application will help me a little ...
-
-A more detailed description will come later
-
-[HERE WILL BE A DESCRIPTION]
-
+A simple web application designed to create, store, modify and provide birthday information for a given circle of people
 
 # Technologies
 
@@ -21,7 +16,7 @@ A more detailed description will come later
 First, you need to clone the repository using git
 
 ```bash
-$ git clone https://github.com/Quastrado/Bdays
+$ git clone --single-branch --branch fix/#2_startap_fix https://github.com/Quastrado/Bdays
 ```
 Then create a virtual environment in the project folder using the venv tool
 ```bash
@@ -38,9 +33,12 @@ $ pip install -r requirements.txt
 Create and add to the root of application folder file .env
 Like this
 ```
-SECRET_KEY = "2308fgby838v3r0871gf"
-POSTGRES = '{'user':  'your username', 'password':  'your password', 'host':  'your host', 'database':  'your database name'}'
+FLASK_APP = "Bdays"
+FLASK_ENV = "development"
+FLASK_DEBUG = "1"
 
+SECRET_KEY = "your secret key"
+POSTGRES = '{'user':  'your username', 'password':  'your password', 'host':  'your host', 'database':  'your database name'}'
 MAIL_SERVER = 'your smtp mail server'
 MAIL_PORT = 'number of your port'
 MAIL_USE_TLS = False
@@ -48,13 +46,7 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = 'your mail username'
 MAIL_PASSWORD = 'your mail password'
 ```
-And file .flaskenv
-Like this
-```
-FLASK_APP = "Bdays"
-FLASK_ENV = "development"
-FLASK_DEBUG = "1"
-```
+
 Create tables in your database
 ```bash
 $ python db upgrade
