@@ -35,6 +35,4 @@ def create_app(test_config = False):
     with app.app_context():
         from Bdays.controllers import studio_members_controller, index_controller, login_controller
     
-    
-    #db.create_all(app=app)
     return app
