@@ -16,7 +16,7 @@ A simple web application designed to create, store, modify and provide birthday 
 First, you need to clone the repository using git
 
 ```bash
-$ git clone --single-branch --branch fix/#2_startap_fix https://github.com/Quastrado/Bdays
+$ git clone --single-branch --branch fix/#2_startup_fix https://github.com/Quastrado/Bdays
 ```
 Then create a virtual environment in the project folder using the venv tool
 ```bash
