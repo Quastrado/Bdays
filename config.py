@@ -5,11 +5,11 @@ from datetime import timedelta
 class BaseConfig:
 	SECRET_KEY = os.getenv('SECRET_KEY')
 	DEBUG = True
+	HOST = os.getenv('HOST')
+	PORT = os.getenv('PORT')
 	REMEMBER_COOKIE_DURATION = timedelta(days=3)
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
-	POSTGRES = eval(os.getenv('POSTGRES'))
-	SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:%(password)s@%(host)s/%(database)s' % POSTGRES
-		
+	SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI')
 	MAIL_SERVER = os.getenv('MAIL_SERVER')
 	MAIL_PORT = os.getenv('MAIL_PORT')
 	MAIL_USE_TLS = False
