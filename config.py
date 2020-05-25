@@ -2,6 +2,7 @@ import ast
 import os
 from datetime import timedelta
 
+
 class BaseConfig:
 	SECRET_KEY = os.getenv('SECRET_KEY')
 	DEBUG = True

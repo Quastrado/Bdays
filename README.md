@@ -30,8 +30,7 @@ Using file requirements.txt, install neсessary modules and packages
 ```bash
 $ pip install -r requirements.txt
 ```
-Create and add to the root of application folder file .env
-Like this
+You will need the following environment variables:
 ```
 FLASK_APP = "Bdays"
 FLASK_ENV = "development"
@@ -46,11 +45,7 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = 'your mail username'
 MAIL_PASSWORD = 'your mail password'
 ```
-
-Create tables in your database
-```bash
-$ flask db migrate && flask db migrate && flask db upgrade
-```
+(they are now listed in the start.sh file)
 
 # Launch
 
