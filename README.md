@@ -31,31 +31,29 @@ Using file requirements.txt, install neсessary modules and packages
 $ pip install -r requirements.txt
 ```
 You will need the following environment variables:
-```
-FLASK_APP = "Bdays"
-FLASK_ENV = "development"
-FLASK_DEBUG = "1"
+```bash
+export FLASK_APP="Bdays"
+export FLASK_ENV="development"
+export FLASK_DEBUG="1"
+export HOST="your host"
+export PORT="your port"
 
-SECRET_KEY = "your secret key"
-POSTGRES = '{'user':  'your username', 'password':  'your password', 'host':  'your host', 'database':  'your database name'}'
-MAIL_SERVER = 'your smtp mail server'
-MAIL_PORT = 'number of your port'
-MAIL_USE_TLS = False
-MAIL_USE_SSL = True
-MAIL_USERNAME = 'your mail username'
-MAIL_PASSWORD = 'your mail password'
+export SECRET_KEY="your secret key"
+export DATABASE_URI="postgresql://postgres:postgres@127.0.0.1/your_db_name"
+export MAIL_SERVER='your smtp server'
+export MAIL_PORT= 'your mail port'
+export MAIL_USE_TLS=False
+export MAIL_USE_SSL=True
+export MAIL_USERNAME='your mail username'
+export MAIL_PASSWORD='your mail password'
 ```
 (they are now listed in the start.sh file)
 
 # Launch
 
-Open the terminal in the application folder and activate virtual enviroment
+With an active virtual environment, run the file start.sh
 ```bash
-$ . env/bin/activate
-```
-Launch the application
-```bash
-$ flask run
+sh start.sh
 ```
 And click on the link terminal
 
