@@ -12,6 +12,8 @@ services:
         environment: 
             MAIL_SERVER: "smtp.google.com"
             MAIL_PORT: "25"
+            MAIL_USE_SSL: "True"
+            MAIL_USE_TLS: "False"
             MAIL_USERNAME: "user"
             MAIL_PASSWORD: "password"
             DATABASE_URI: "postgresql://postgres:IlJU7f71Vh7rM1yv@172.17.0.1/bdays"

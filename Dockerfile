@@ -5,5 +5,5 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-RUN chmod u+x ./run.sh
-ENTRYPOINT ["./run.sh"]
+RUN chmod u+x ./start.sh
+ENTRYPOINT ["./start.sh"]
