@@ -16,3 +16,4 @@ export MAIL_USERNAME='your mail username'
 export MAIL_PASSWORD='your mail password'
 python main.py db upgrade
 python main.py runserver
+

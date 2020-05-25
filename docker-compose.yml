@@ -1,0 +1,29 @@
+version: "3"
+services:
+
+    bdays:
+        build:
+          context: .
+          dockerfile: ./Dockerfile        
+        container_name: bdays
+        restart: unless-stopped
+        ports: 
+          - 5003:5003
+        environment: 
+            MAIL_SERVER: "smtp.google.com"
+            MAIL_PORT: "25"
+            MAIL_USERNAME: "user"
+            MAIL_PASSWORD: "password"
+            DATABASE_URI: "postgresql://postgres:IlJU7f71Vh7rM1yv@172.17.0.1/bdays"
+            SECRET_KEY: "asdqwe"
+            HOST: "0.0.0.0"
+            PORT: "5003"
+
+
+
+        
+          
+       
+      
+  
+
