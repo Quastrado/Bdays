@@ -14,6 +14,7 @@ from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 
 from config import BaseConfig
+from dotenv import load_dotenv
 
 
 def create_app(test_config = False):
@@ -36,17 +37,15 @@ def create_app(test_config = False):
     login_manager.init_app(app)
     login_manager.login_view = '/'
     
-
-    engine = create_engine(BaseConfig.SQLALCHEMY_DATABASE_URI)
+    engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
     if not database_exists(engine.url):
         create_database(engine.url)
-    
-
+        
     @login_manager.user_loader
     def load_user(id):
         return StudioMember.query.get(id)    
 
     with app.app_context():
         from Bdays.controllers import studio_members_controller, index_controller, login_controller
-    
+       
     return manager
