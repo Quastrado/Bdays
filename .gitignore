@@ -4,4 +4,4 @@
 /env
 .env
 .flaskenv
-.start.sh
+start.sh
