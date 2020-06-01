@@ -1,8 +1,8 @@
-from Bdays import create_app
+from Bdays import create_manager
 
 
-app = create_app()
+manager = create_manager()
 
 
 if __name__ == '__main__':
-    app.run()
+    manager.run()

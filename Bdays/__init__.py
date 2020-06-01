@@ -29,9 +29,6 @@ def create_app(test_config = False):
         
     db.init_app(app)
     migrate = Migrate(app, db)
-    manager = Manager(app)
-    manager.add_command('db', MigrateCommand)
-    manager.add_command('runserver', Server(host=app.config['HOST'], port=app.config['PORT']))
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = '/'
@@ -47,4 +44,12 @@ def create_app(test_config = False):
     with app.app_context():
         from Bdays.controllers import studio_members_controller, index_controller, login_controller
        
+    return app
+
+
+def create_manager():
+    app = create_app()
+    manager = Manager(app)
+    manager.add_command('db', MigrateCommand)
+    manager.add_command('runserver', Server(host=app.config['HOST'], port=app.config['PORT']))
     return manager
