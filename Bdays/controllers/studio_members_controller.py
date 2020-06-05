@@ -5,6 +5,7 @@ from flask_login import current_user
 from Bdays.view_models.studio_member import StudioMember as ViewStudioMember, StudioMemberPassword as ViewStudioMemberPassword
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
 from Bdays.controllers.helper import convert_input_to
+from Bdays.services.email_service import EmailSender
 
 
 blueprint = Blueprint('studio_member_controller', __name__, static_folder='static')
@@ -30,12 +31,17 @@ def get_by_id(id):
 def create_studio_member(view_studio_member):
     studio_member_repository = StudioMemberRepository()
     # try:
-    studio_member_repository.create(
+    studio_member_id = studio_member_repository.create(
+            view_studio_member.email,
+            view_studio_member.nickname,
+            view_studio_member.birthday,
+            view_studio_member.role
+        )
+    sender = EmailSender()
+    sender.invite_mail_sender(
         view_studio_member.email,
-        view_studio_member.nickname,
-        view_studio_member.birthday,
-        view_studio_member.role
-    )
+        studio_member_id
+        )
     # except Exception as e:
     #     return e
     

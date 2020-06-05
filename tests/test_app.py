@@ -14,8 +14,7 @@ def app():
 
 def test_studio_member_create_successfull(client):
     repository = StudioMemberRepository()
-    id = uuid.uuid4()
-    repository.create(id, 'email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     assert StudioMember.query.filter_by(nickname='user').first()
     repository.delete(id)
 
@@ -23,8 +22,8 @@ def test_studio_member_create_successfull(client):
 def test_missing_argument(client):
     repository = StudioMemberRepository()
     with pytest.raises(TypeError):
-        repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+        repository.create('email1@dot.com', '01.01.2000', 'Studio Member')
 
-        
+
 
 
