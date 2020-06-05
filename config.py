@@ -20,3 +20,6 @@ class BaseConfig:
 
 class TestConfig:
     SECRET_KEY = os.getenv('SECRET_KEY')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@127.0.0.1/bdays"
+

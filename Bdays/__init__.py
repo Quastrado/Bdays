@@ -13,7 +13,7 @@ from Bdays.controllers.donations_controller import blueprint as donation_bluepri
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 
-from config import BaseConfig
+from config import BaseConfig, TestConfig
 
 
 def create_app(test_config = False):
@@ -26,7 +26,8 @@ def create_app(test_config = False):
         app.config.from_object('config.TestConfig')
     else:
         app.config.from_object('config.BaseConfig')
-        
+    
+    #db = create_db(test_config)
     db.init_app(app)
     migrate = Migrate(app, db)
     login_manager = LoginManager()
