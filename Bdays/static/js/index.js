@@ -37,7 +37,7 @@ $('#newStudioMemberSubmit').click(function() {
     data: JSON.stringify(data),
     error: function(response) {
       console.log(response)
-      $('#alertText').text(response.status + ' ' + response.responseText);
+      $('#alertText').text(response.responseText);
       $('#errorAlert').fadeIn('slow');
       
     }

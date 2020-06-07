@@ -1,8 +1,11 @@
+from smtplib import SMTPDataError, SMTPServerDisconnected
+
 from flask import request
 from flask_mail import Mail, Message
 
 from flask import current_app as app
 from config import BaseConfig
+from Bdays.exceptions.message_not_send import MessageNotSendError
 
 
 class EmailSender():
@@ -15,4 +18,10 @@ class EmailSender():
         msg = Message('Wellcome', sender=sender, recipients=[recipient])
         msg.body = f'http://{request.host}/studio_member/set_password/{id}'
         with app.app_context():
-            mail.send(msg)
+            try:
+                mail.send(msg)
+                raise MessageNotSendError('Message was not sent. Try again')
+            except SMTPDataError as e:
+                raise MessageNotSendError('Message was not sent. Try again')
+            except SMTPServerDisconnected as e:
+                raise e
