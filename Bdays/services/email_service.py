@@ -20,8 +20,7 @@ class EmailSender():
         with app.app_context():
             try:
                 mail.send(msg)
-                raise MessageNotSendError('Message was not sent. Try again')
             except SMTPDataError as e:
                 raise MessageNotSendError('Message was not sent. Try again')
             except SMTPServerDisconnected as e:
-                raise e
+                return e

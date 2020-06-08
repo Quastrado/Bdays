@@ -1,6 +1,7 @@
+from Bdays.exceptions.server_exception import ServerException
 
 
-class MessageNotSendError(Exception):
+class MessageNotSendError(ServerException):
     def __init__(self, *args):
         if args:
             self.message = args[0]
