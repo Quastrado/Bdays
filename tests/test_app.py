@@ -17,7 +17,7 @@ def app():
     app=create_app(test_config=True)
     return app
 
-
+"""create method tests"""
 def test_studio_member_create_successfull(client):
     new_user = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     assert StudioMember.query.filter_by(nickname='user').first()
@@ -54,12 +54,18 @@ def test_invalid_email(client):
         new_user = repository.create('emaildotcom', 'user4', '01.01.2000', 'Studio Member')
 
 
+""" read method tests"""
 def test_read_successfull(client):
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     assert repository.read(user_id)
     repository.delete(user_id)
 
 
+def test_missing_id(client):
+    with pytest.raises(TypeError):
+        user = repository.read()
+
+""" read all method tests"""
 def test_read_all_successfull(client):
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     user = repository.read(user_id)
