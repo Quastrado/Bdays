@@ -45,7 +45,7 @@ class StudioMemberRepository():
     def update(self, id, nickname, birthday):
         studio_member = StudioMember.query.filter_by(id=id).first()
         studio_member.nickname = nickname
-        studio_member.birtday = birthday
+        studio_member.birthday = birthday
         db.session.commit()
     
 
