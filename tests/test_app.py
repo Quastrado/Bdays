@@ -52,4 +52,10 @@ def test_role_assignment(client):
 def test_invalid_email(client):
     with pytest.raises(ValueError):
         new_user = repository.create('emaildotcom', 'user4', '01.01.2000', 'Studio Member')
-    
+
+
+def test_read_successfull(client):
+    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    assert repository.read(user_id)
+    repository.delete(user_id)
+
