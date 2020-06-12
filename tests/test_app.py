@@ -59,3 +59,10 @@ def test_read_successfull(client):
     assert repository.read(user_id)
     repository.delete(user_id)
 
+
+def test_read_all_successfull(client):
+    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    user = repository.read(user_id)
+    all_users = repository.read_all()
+    assert user in all_users
+    repository.delete(user_id)
