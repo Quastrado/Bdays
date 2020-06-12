@@ -1,3 +1,4 @@
+import datetime
 import pytest
 import uuid
 
@@ -71,4 +72,26 @@ def test_read_all_successfull(client):
     user = repository.read(user_id)
     all_users = repository.read_all()
     assert user in all_users
+    repository.delete(user_id)
+
+
+"""update method tests"""
+def test_update_successfull(client):
+    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    updated_user = repository.update(user_id, 'updated_user', '02.02.2002')
+    updated_user = repository.read(user_id)
+    assert updated_user.nickname == 'updated_user' and updated_user.birthday == datetime.date(2002, 2, 2)
+    repository.delete(user_id)
+
+
+def test_update_missing_id(client):
+    with pytest.raises(TypeError):
+        updated_user = repository.update('updated_user', '02.02.2002')
+
+
+def test_update_missing_argument(client):
+    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    with pytest.raises(TypeError):
+        updated_user = repository.update(user_id, 'updated_user')
+    db.session.rollback()
     repository.delete(user_id)
