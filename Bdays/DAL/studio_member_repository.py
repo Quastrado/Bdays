@@ -26,7 +26,6 @@ class StudioMemberRepository():
         new_studio_member.role.append(studio_memeber_role)
         db.session.add(new_studio_member)
         db.session.commit()
-        db.session.refresh(new_studio_member)
         studio_memeber_id = str(new_studio_member.id)
         print(type(studio_memeber_id))
         return studio_memeber_id
