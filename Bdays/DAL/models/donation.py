@@ -7,7 +7,7 @@ from Bdays.DAL.models.db import db
 
 class Donation(db.Model):
     __tablename__ = 'donations'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4())
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     amount = db.Column(db.Integer)
     donation_source_id = db.Column(UUID(as_uuid=True), db.ForeignKey('studio_members.id'))
     donation_target_id = db.Column(UUID(as_uuid=True), db.ForeignKey('studio_members.id'))

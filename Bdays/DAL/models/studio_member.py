@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class StudioMember(db.Model, UserMixin):
     __tablename__ = 'studio_members'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4())
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     email = db.Column(db.Text(), nullable=False)
     nickname = db.Column(db.String(50), unique=True)
     birthday = db.Column(db.Date)
