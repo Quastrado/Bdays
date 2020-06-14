@@ -7,15 +7,16 @@ from Bdays.DAL.models.donation import Donation
 class DonationRepository():
 
     def create(self, amount, donation_source, donation_target, description):
-        db_set = Donation(
+        new_donation = Donation(
             amount = amount,
             donation_source_id = donation_source,
             donation_target_id = donation_target,
             description = description
             )
-        db.session.add(db_set)
+        db.session.add(new_donation)
         db.session.commit()
-        return id
+        db.session.flush()
+        return new_donation.id
 
 
     def read(self, id):
