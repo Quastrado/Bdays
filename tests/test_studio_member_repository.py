@@ -58,7 +58,7 @@ def test_read_successfull(client):
     repository.delete(user_id)
 
 
-def test_create_missing_id(client):
+def test_read_missing_id(client):
     with pytest.raises(TypeError):
         user = repository.read()
 
