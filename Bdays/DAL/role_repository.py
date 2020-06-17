@@ -1,17 +1,20 @@
+import uuid
+
 from Bdays.DAL.models.db import db
 from Bdays.DAL.models.roles import Role
 
 
 class RoleRepository():
 
-    def create(self, id, role):
-        db_set = Role(
-            id = id,
-            role = role
+    def create(self, role, id=uuid.uuid4()):
+        new_role = Role(
+            role = role,
+            id = id
             )
-        db.session.add(db_set)
+        db.session.add(new_role)
         db.session.commit()
-        return id
+        new_role_id = new_role.id
+        return new_role_id
 
 
     def read(self, id):
