@@ -27,9 +27,9 @@ class RoleRepository():
         return roles
 
 
-    def update(self, id, role):
+    def update(self, id, role_name):
         role = Role.query.filter_by(id=id).first()
-        role.role = role
+        role.role = role_name
         db.session.commit()
 
 
