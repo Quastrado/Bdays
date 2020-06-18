@@ -63,4 +63,12 @@ def test_read_incorrect_id(client):
     id = 123
     with pytest.raises(ProgrammingError):
         repository.read(id)
-        
+
+
+"""read all method tests"""
+def test_read_all_successfull(client):
+    role = 'Tester'
+    role_id = repository.create(role)
+    new_role = repository.read(role_id)
+    assert new_role in repository.read_all()
+    repository.delete(role_id)
