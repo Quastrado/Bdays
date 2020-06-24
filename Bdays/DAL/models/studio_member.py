@@ -24,13 +24,13 @@ class StudioMember(db.Model, UserMixin):
         )
     given_donations = db.relationship(
             'Donation', 
-            back_populates = 'donation_source',
-            foreign_keys = 'Donation.donation_source_id'
+            back_populates ='donation_source',
+            foreign_keys ='Donation.donation_source_id'
             )
     received_donations = db.relationship(
             'Donation',
-            back_populates = 'donation_target',
-            foreign_keys = 'Donation.donation_target_id'
+            back_populates ='donation_target',
+            foreign_keys ='Donation.donation_target_id'
             )
 
 
@@ -46,5 +46,4 @@ class StudioMember(db.Model, UserMixin):
     @property
     def roles(self):
         return [role.role for role in self.role]
-
     

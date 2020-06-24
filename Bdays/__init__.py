@@ -16,7 +16,7 @@ from sqlalchemy_utils import database_exists, create_database
 from config import BaseConfig, TestConfig
 
 
-def create_app(test_config = False):
+def create_app(test_config=False):
     app = Flask(__name__)
     app.register_blueprint(login_blueprint, url_prefix='/login')
     app.register_blueprint(studio_member_blueprint, url_prefix='/studio_member')

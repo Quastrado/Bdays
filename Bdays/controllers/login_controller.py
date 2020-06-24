@@ -17,17 +17,4 @@ def process_login():
     if studio_member:
         login_user(studio_member)
         return url_for('index_controller.dashboard')
-    return redirect(url_for('login_controller.login'))
-
-"""
-@blueprint.route('/process-registration', methods=['POST'])
-def process_registration():
-    user_repository = UserRepository()
-    username = request.form['username']
-    password = request.form['password']
-    password_replay = request.form['password_replay']
-    if password == password_replay:
-         user_repository.registration(username, password)
-         return url_for('index_controller.index')
-    return url_for('index_controller.registration')
-"""
+    return redirect(url_for('login_controller.process_login'))

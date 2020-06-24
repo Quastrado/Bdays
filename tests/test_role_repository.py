@@ -12,6 +12,8 @@ repository = RoleRepository()
 
 
 """create method tests"""
+
+
 def test_create_successfull(client):
     id = uuid.uuid4()
     role_name = 'Tester'
@@ -47,6 +49,8 @@ def test_create_incorrect_role(client):
 
 
 """read method tests"""
+
+
 def test_read_successfull(client):
     role_name = 'Tester'
     role_id = repository.create(role_name)
@@ -66,6 +70,8 @@ def test_read_incorrect_id(client):
 
 
 """read all method tests"""
+
+
 def test_read_all_successfull(client):
     role_name = 'Tester'
     role_id = repository.create(role_name)
@@ -75,6 +81,8 @@ def test_read_all_successfull(client):
 
 
 """update method test"""
+
+
 def test_update_role_name_successfull(client):
     role_name = 'Tester'
     role_id = repository.create(role_name)

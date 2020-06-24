@@ -1,9 +1,6 @@
-from flask import current_app as app
-from flask import render_template, request
 from flask import Blueprint
 
 from Bdays.DAL.donation_repository import DonationRepository
-from Bdays.DAL.models.donation import Donation
 from Bdays.view_models.donation import Donation as ViewDonation
 from Bdays.controllers.helper import convert_input_to
 
@@ -21,7 +18,6 @@ def add_donation(view_donation):
             view_donation.donation_target,
             view_donation.description
         )
-    except Exception as e:
+    except Exception:
         return 'Internal server error ', 500
-    
     return '', 201
