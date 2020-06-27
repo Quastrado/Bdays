@@ -18,7 +18,7 @@ class BaseConfig:
 	MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 
 class TestConfig:
-    SECRET_KEY = "your secret key"
+    SECRET_KEY = "jdvjfh14f1331ovnv4"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = "your database uri"
+    SQLALCHEMY_DATABASE_URI = "postgresql://bdays:sfa@127.0.0.1/bdays"
 
