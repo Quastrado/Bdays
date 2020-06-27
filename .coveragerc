@@ -1,0 +1,3 @@
+[run]
+source=Bdays
+omit=/my_learn/Bdays/env/* 
