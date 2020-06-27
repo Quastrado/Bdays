@@ -1,4 +1,4 @@
-.master_detail .detail_list {
+ .master_detail .detail_list {
     background-color: #ccc;
     height: 100%;
     widows: 100%;
@@ -31,5 +31,15 @@
     transform: scale(1);
   }
 
-
+  .nav-item {
+    list-style: none;
+  }
   
+  .nav-item .dropdown-menu {
+    margin-right: 0px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0;
+}
