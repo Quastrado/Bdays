@@ -43,3 +43,38 @@
     display: block;
     padding: 0;
 }
+
+.dropdown-menu {
+  background-color: grey;
+}
+
+.dropdown-item {
+  background-color: grey;
+}
+
+
+/* Personal Area*/
+body {
+  background-color: #212529;
+}
+
+#personalArea>h1 {color: #fff;}
+
+a {
+  color: #fff !important;
+  text-decoration: none;
+  opacity: 1;
+  color: white;
+}
+
+
+.nav-tabs>a, .nav-tabs>li.active>a:focus, .nav-tabs>a:hover {
+  border: 0;
+ }
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  border: 0;
+  background-color: #a011dc;
+  border: 0;
+  color: white;
+}
