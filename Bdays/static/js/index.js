@@ -1,7 +1,8 @@
 
 
 $(document).ready(function () {
-    $('#errorAlert').hide()
+    $('#personalArea').hide();
+    $('#errorAlert').hide();
     var $body = $('body');
   
     $body.on('click', 'div.master_list div.list-group button', function () {
@@ -44,6 +45,18 @@ $('#newStudioMemberSubmit').click(function() {
     
   });
 });
+
+
+  $('#editProfile').click(function() {
+    $('#dashboard').hide();
+    $('#personalArea').show();
+  });
+
+
+  $('#personalAreaClose').click(function() {
+    $('#personalArea').hide();
+    $('#dashboard').show();
+  });
 // GET запрос - получить с сервера
 // POST запрос - отдать на сервер
 // необходим роут, который примет запрос. В контроллере для studio_members 
