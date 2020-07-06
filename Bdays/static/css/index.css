@@ -58,6 +58,11 @@ body {
   background-color: #212529;
 }
 
+#personalAreaClose>svg:hover {
+  cursor: pointer;
+  fill: #a011dc;
+}
+
 #personalArea>h1 {color: #fff;}
 
 a {
@@ -79,9 +84,22 @@ a {
   margin-top: 10px;
 }
 
-.nav-tabs>a, .nav-tabs>li.active>a:focus, .nav-tabs>a:hover {
+#nav-tab>a {
+  font-size: 25px;
+}
+
+.card {
+  ba
+}
+
+.nav-tabs .nav-link {
+  border: 0px solid transparent;
+  padding: 10px;
+}
+
+.nav-tabs>a, .nav-tabs>a:hover {
   border: 0;
-  margin-inline-start: 10px;
+  margin-left: 10px;
  }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
