@@ -36,7 +36,7 @@
         </li>
       </nav>
     </div>
-    <div class="container">
+    
       <h3>Payroll Tables w/ Bootstrap</h3>
       <div class="master_detail">
         <div class="row">
@@ -57,7 +57,6 @@
             </div>
         </div>
       </div>
-    </div>
   </div>
 
 
@@ -83,11 +82,21 @@
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <div class="card bg-dark text-white">
+      <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="card bg-dark text-white col-md-8">
           <div class="card-body">
-            This is some text within a card body.
+            <div class="row no-gutters">
+              <div class="col-md-2">
+                <img src="https://i.pinimg.com/originals/0d/1c/32/0d1c329ce253ec4a81dfe34361bcd1bd.jpg" width="90" height="90" class="rounded-circle">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <label class="btn btn-secondary" id="imagePicker">
+                    Choose image <input type="file" hidden>
+                  </label>
+                </div>
+              </div>
+            </div>  
           </div>
         </div>
       </div>

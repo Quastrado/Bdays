@@ -88,6 +88,9 @@ a {
   font-size: 25px;
 }
 
+.card {
+  margin-top: 20px;
+}
 
 .nav-tabs .nav-link {
   border: 0px solid transparent;
