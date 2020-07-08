@@ -24,24 +24,22 @@ class StudioMember(db.Model, UserMixin):
         )
     given_donations = db.relationship(
             'Donation', 
-            back_populates ='donation_source',
-            foreign_keys ='Donation.donation_source_id'
+            back_populates='donation_source',
+            foreign_keys='Donation.donation_source_id'
             )
     received_donations = db.relationship(
             'Donation',
-            back_populates ='donation_target',
-            foreign_keys ='Donation.donation_target_id'
+            back_populates='donation_target',
+            foreign_keys='Donation.donation_target_id'
             )
-
+    avatar = db.Column(db.Text)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
         return generate_password_hash(password)
 
-
     def check_password(self, password):
         return check_password_hash(self.password, password)
-
 
     @property
     def roles(self):
