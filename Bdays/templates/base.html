@@ -91,9 +91,11 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <label class="btn btn-secondary" id="imagePicker">
-                    Choose image <input type="file" hidden>
-                  </label>
+                  <form id="upload-file" method="PUT" enctype="multipart/form-data">
+                    <label class="btn btn-secondary" id="imagePicker">
+                      Choose image <input name="file" type="file" hidden>
+                    </label>
+                  </form>
                 </div>
               </div>
             </div>  

@@ -1,14 +1,6 @@
 
 
 $(document).ready(function () {
-  // $('#imagePicker').click(function () {
-  //   console.log($)
-  //   $.FileDialog({ multiple: false }).on('files.bs.filedialog', function (ev) {
-  //     var file = ev.file;
-  //     console.log(file);
-  //   });
-  // });
-
   $('#personalArea').hide();
   $('#errorAlert').hide();
   var $body = $('body');
@@ -67,8 +59,22 @@ $('#personalAreaClose').click(function () {
 });
 
 
+$(document).on('change', ':file', function() {
+    var form_data = new FormData($('#upload-file')[0]);
+    console.log(form_data)
+    $.ajax({
+      type: "PUT",
+      url: '/studio_member/avatar',
+      data: form_data,
+      processData: false,
+      contentType: false,
+      success: function(data) {
+        console.log('Success!');
+      },
+    });
+});
 
-// GET запрос - получить с сервера
-// POST запрос - отдать на сервер
-// необходим роут, который примет запрос. В контроллере для studio_members 
+
+
+
 

@@ -1,7 +1,9 @@
 from flask import current_app as app
 from flask import jsonify, render_template, request
 from flask import Blueprint
-from flask_login import current_user
+from flask_login import current_user, login_required
+from werkzeug.utils import secure_filename
+
 from Bdays.view_models.studio_member import StudioMember as ViewStudioMember, StudioMemberPassword as ViewStudioMemberPassword
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
 from Bdays.controllers.helper import convert_input_to
@@ -57,4 +59,13 @@ def set_password(view_studio_member_password):
     )
     return '', 201
 
-    
+
+@blueprint.route('/avatar', methods=['PUT'])
+@login_required
+def put_avatar():
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    file.save('/home/quastrado/my_learn/Bdays/Bdays/static/img/avas/' + filename)
+
+    return '', 201
+
