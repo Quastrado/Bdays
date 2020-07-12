@@ -16,6 +16,7 @@ class BaseConfig:
 	MAIL_USE_SSL = True
 	MAIL_USERNAME = os.getenv('MAIL_USERNAME')
 	MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+	UPLOAD_FOLDER = '/home/quastrado/my_learn/Bdays/Bdays/static/img/avas/'
 
 class TestConfig:
     SECRET_KEY = "jdvjfh14f1331ovnv4"
