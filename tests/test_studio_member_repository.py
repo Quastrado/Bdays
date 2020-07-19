@@ -16,6 +16,7 @@ from Bdays.DAL.DTO.studio_member import StudioMember as StudioMemberDTO
 """create method tests"""
 def test_studio_member_create_successfull(client):
     repository = StudioMemberRepository()
+    dto = StudioMemberDTO()
     dto.email = 'email@dot.com'
     dto.nickname = 'user'
     dto.birthday = '01.01.2000'
@@ -26,28 +27,44 @@ def test_studio_member_create_successfull(client):
 
 def test_return_id(client):
     repository = StudioMemberRepository()
-    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member') 
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    user_id = repository.create(dto, 'Studio Member')
     assert user_id
     repository.delete(user_id)
 
 def test_missing_nickname(client):
     repository = StudioMemberRepository()
-    with pytest.raises(TypeError):
-        repository.create('email@dot.com', '01.01.2000', 'Studio Member')
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.birthday = '01.01.2000'
+    with pytest.raises(AttributeError):
+        repository.create(dto, 'Studio Member')
 
 
 def test_not_unique_nickname(client):
     repository = StudioMemberRepository()
-    user = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    user = repository.create(dto, 'Studio Member')
     with pytest.raises(IntegrityError):
-        user_with_same_name = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+        dto.nickname = 'user'
+        user_with_same_name = repository.create(dto, 'Studio Member')
     db.session.rollback()
     repository.delete(user)
 
 
 def test_role_assignment(client):
     repository = StudioMemberRepository()
-    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    user_id = repository.create(dto, 'Studio Member')
     user = repository.read(user_id)
     assert db.session.query(Role).filter(Role.role == 'Studio Member').first() in user.role
     repository.delete(user_id)
@@ -55,8 +72,12 @@ def test_role_assignment(client):
 
 def test_invalid_email(client):
     repository = StudioMemberRepository()
+    dto = StudioMemberDTO()
+    dto.email = 'emaildotcom'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
     with pytest.raises(ValueError):
-        new_user = repository.create('emaildotcom', 'user', '01.01.2000', 'Studio Member')
+        new_user = repository.create(dto, 'Studio Member')
 
 
 """ read method tests"""
