@@ -12,11 +12,10 @@ from Bdays.DAL.models.roles import Role
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
 from Bdays.DAL.DTO.studio_member import StudioMember as StudioMemberDTO
 
-repository = StudioMemberRepository()
-
 
 """create method tests"""
 def test_studio_member_create_successfull(client):
+    repository = StudioMemberRepository()
     dto.email = 'email@dot.com'
     dto.nickname = 'user'
     dto.birthday = '01.01.2000'
@@ -26,16 +25,19 @@ def test_studio_member_create_successfull(client):
 
 
 def test_return_id(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member') 
     assert user_id
     repository.delete(user_id)
 
 def test_missing_nickname(client):
+    repository = StudioMemberRepository()
     with pytest.raises(TypeError):
         repository.create('email@dot.com', '01.01.2000', 'Studio Member')
 
 
 def test_not_unique_nickname(client):
+    repository = StudioMemberRepository()
     user = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     with pytest.raises(IntegrityError):
         user_with_same_name = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
@@ -44,6 +46,7 @@ def test_not_unique_nickname(client):
 
 
 def test_role_assignment(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     user = repository.read(user_id)
     assert db.session.query(Role).filter(Role.role == 'Studio Member').first() in user.role
@@ -51,23 +54,27 @@ def test_role_assignment(client):
 
 
 def test_invalid_email(client):
+    repository = StudioMemberRepository()
     with pytest.raises(ValueError):
         new_user = repository.create('emaildotcom', 'user', '01.01.2000', 'Studio Member')
 
 
 """ read method tests"""
 def test_read_successfull(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     assert repository.read(user_id)
     repository.delete(user_id)
 
 
 def test_read_missing_id(client):
+    repository = StudioMemberRepository()
     with pytest.raises(TypeError):
         user = repository.read()
 
 """ read all method tests"""
 def test_read_all_successfull(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     user = repository.read(user_id)
     all_users = repository.read_all()
@@ -77,6 +84,7 @@ def test_read_all_successfull(client):
 
 """update method tests"""
 def test_update_successfull(client):
+    repository = StudioMemberRepository()
     dto = StudioMemberDTO()
     dto.email = 'email@dot.com'
     dto.nickname = 'user'
@@ -91,11 +99,13 @@ def test_update_successfull(client):
 
 
 def test_update_missing_id(client):
+    repository = StudioMemberRepository()
     with pytest.raises(TypeError):
         updated_user = repository.update('updated_user', '02.02.2002')
 
 
 def test_update_missing_argument(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     with pytest.raises(TypeError):
         updated_user = repository.update(user_id, 'updated_user')
@@ -105,18 +115,21 @@ def test_update_missing_argument(client):
 
 """delete method test"""
 def test_delete_successfull(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     repository.delete(user_id)
     assert repository.read(user_id) == None
 
 
 def test_delete_missing_id(client):
+    repository = StudioMemberRepository()
     with pytest.raises(TypeError):
         repository.delete()
 
 
 """find studio member method test""" 
 def test_find_studio_member(client):
+    
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     password = 'password'
     repository.set_password(user_id, password)
@@ -125,6 +138,7 @@ def test_find_studio_member(client):
 
 
 def test_incorrect_password(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     password = 'password'
     incorrect_password = 'passw0rd'
@@ -134,10 +148,12 @@ def test_incorrect_password(client):
 
 
 def test_nonexistent_user(client):
+    repository = StudioMemberRepository()
     assert repository.find_studio_member('user', 'password') == None
 
 
 def test_missing_argument(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     password = 'password'
     repository.set_password(user_id, password)
@@ -149,6 +165,7 @@ def test_missing_argument(client):
 
 """set password method test"""
 def test_set_password(client):
+    repository = StudioMemberRepository()
     user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
     model = StudioMember()
     password = 'password'
@@ -159,6 +176,7 @@ def test_set_password(client):
 
 
 def test_missing_id(client):
+    repository = StudioMemberRepository()
     password = 'password'
     with pytest.raises(TypeError):
         repository.set_password(password)
