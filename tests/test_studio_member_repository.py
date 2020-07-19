@@ -10,13 +10,17 @@ from Bdays.DAL.models.db import db
 from Bdays.DAL.models.studio_member import StudioMember
 from Bdays.DAL.models.roles import Role
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
+from Bdays.DAL.DTO.studio_member import StudioMember as StudioMemberDTO
 
 repository = StudioMemberRepository()
 
 
 """create method tests"""
 def test_studio_member_create_successfull(client):
-    new_user = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    new_user = repository.create(dto, 'Studio Member')
     assert StudioMember.query.filter_by(nickname='user').first()
     repository.delete(new_user)
 
@@ -73,8 +77,14 @@ def test_read_all_successfull(client):
 
 """update method tests"""
 def test_update_successfull(client):
-    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
-    updated_user = repository.update(user_id, 'updated_user', '02.02.2002')
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    user_id = repository.create(dto, 'Studio Member')
+    dto.nickname = 'updated_user'
+    dto.birthday = '02.02.2002'
+    updated_user = repository.update(user_id, dto)
     updated_user = repository.read(user_id)
     assert updated_user.nickname == 'updated_user' and updated_user.birthday == datetime.date(2002, 2, 2)
     repository.delete(user_id)
