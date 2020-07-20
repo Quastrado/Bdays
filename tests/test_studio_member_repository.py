@@ -11,6 +11,7 @@ from Bdays.DAL.models.studio_member import StudioMember
 from Bdays.DAL.models.roles import Role
 from Bdays.DAL.studio_member_repository import StudioMemberRepository
 from Bdays.DAL.DTO.studio_member import StudioMember as StudioMemberDTO
+from config import TestConfig
 
 
 """create method tests"""
@@ -148,7 +149,7 @@ def test_update_set_avatar(client):
     dto.nickname = 'user'
     dto.birthday = '01.01.2000'
     user_id = repository.create(dto, 'Studio Member')
-    avatar = '/home/quastrado/my_learn/Bdays/Bdays/static/img/avas/test_pic.jpeg'
+    avatar = TestConfig.UPLOAD_FOLDER + 'test_pic.jpeg'
     dto.avatar = avatar
     repository.update(user_id, dto)
     user = repository.read(user_id)

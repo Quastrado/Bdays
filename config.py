@@ -18,8 +18,9 @@ class BaseConfig:
 	MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 	UPLOAD_FOLDER = '/home/quastrado/my_learn/Bdays/Bdays/static/img/avas/'
 
+
 class TestConfig:
     SECRET_KEY = "jdvjfh14f1331ovnv4"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = "postgresql://bdays:sfa@127.0.0.1/bdays"
-
+    UPLOAD_FOLDER = '/home/quastrado/my_learn/Bdays/Bdays/static/img/avas/'
