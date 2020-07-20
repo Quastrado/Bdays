@@ -2,7 +2,7 @@ import datetime
 import pytest
 import uuid
 
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import DataError, IntegrityError
 from werkzeug.security import check_password_hash
 
 from tests.test_base import app
@@ -121,17 +121,41 @@ def test_update_successfull(client):
 
 def test_update_missing_id(client):
     repository = StudioMemberRepository()
-    with pytest.raises(TypeError):
+    dto = StudioMemberDTO()
+    dto.nickname = 'updated_user'
+    dto.birthday = '02.02.2002'
+    with pytest.raises(DataError):
         updated_user = repository.update('updated_user', '02.02.2002')
 
 
-def test_update_missing_argument(client):
+def test_update_missing_dto(client):
     repository = StudioMemberRepository()
-    user_id = repository.create('email@dot.com', 'user', '01.01.2000', 'Studio Member')
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    user_id = repository.create(dto, 'Studio Member')
     with pytest.raises(TypeError):
-        updated_user = repository.update(user_id, 'updated_user')
+        updated_user = repository.update(user_id)
     db.session.rollback()
     repository.delete(user_id)
+
+
+def test_update_set_avatar(client):
+    repository = StudioMemberRepository()
+    dto = StudioMemberDTO()
+    dto.email = 'email@dot.com'
+    dto.nickname = 'user'
+    dto.birthday = '01.01.2000'
+    user_id = repository.create(dto, 'Studio Member')
+    avatar = '/home/quastrado/my_learn/Bdays/Bdays/static/img/avas/test_pic.jpeg'
+    dto.avatar = avatar
+    repository.update(user_id, dto)
+    user = repository.read(user_id)
+    assert user.avatar == avatar
+    db.session.rollback()
+    repository.delete(user_id)
+    
 
 
 """delete method test"""
