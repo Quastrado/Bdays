@@ -13,14 +13,14 @@ from config import BaseConfig
 
 class StudioMemberRepository():
     """I am CRUD!"""
-    def create(self, email, nickname, birthday, role):
-        check_email = re.match(r'\w+@\w+', email)
+    def create(self, studio_member_dto, role):
+        check_email = re.match(r'\w+@\w+', studio_member_dto.email)
         if not check_email:
             raise ValueError
         new_studio_member = StudioMember(
-            email = email,
-            nickname = nickname,
-            birthday = birthday
+            email=studio_member_dto.email,
+            nickname=studio_member_dto.nickname,
+            birthday=studio_member_dto.birthday
         )
         studio_memeber_role = db.session.query(Role).filter(Role.role == role).first()
         new_studio_member.role.append(studio_memeber_role)
@@ -41,10 +41,12 @@ class StudioMemberRepository():
         return studio_members
 
 
-    def update(self, id, nickname, birthday):
+    def update(self, id, studio_member_dto):
         studio_member = StudioMember.query.filter_by(id=id).first()
-        studio_member.nickname = nickname
-        studio_member.birthday = birthday
+        dto = studio_member_dto
+        data = dto.__dict__
+        for k, v in data.items():
+            setattr(studio_member, k, v)
         db.session.commit()
     
 
@@ -63,4 +65,4 @@ class StudioMemberRepository():
         studio_member = StudioMember.query.filter_by(id=id).first()
         studio_member.password = studio_member.set_password(password)
         db.session.commit()
-        
+    
